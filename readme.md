@@ -50,6 +50,6 @@ Generator(function (time) {
 > [audio-analyser](https://npmjs.org/package/audio-analyser) — analyser node for audio-streams.<br/>
 > [pcm-util](https://npmjs.org/package/pcm-util) — utils to work with pcm-streams.<br/>
 > [drawille-canvas](https://github.com/madbence/node-drawille-canvas) — paint in terminal with braille characters.<br/>
-> [frequency-viewer](https://www.npmjs.com/package/frequency-viewer) — show spectrum in browser by @substack.
-> [sillyscope](https://www.npmjs.com/package/sillyscope) — oscilloscope and spectrogram in chromeless chrome by @substack.
+> [frequency-viewer](https://www.npmjs.com/package/frequency-viewer) — show spectrum in browser by @substack.<br/>
+> [sillyscope](https://www.npmjs.com/package/sillyscope) — oscilloscope and spectrogram in chromeless chrome by @substack.<br/>
 > [AnalyserNode](https://developer.mozilla.org/en/docs/Web/API/AnalyserNode) — web-audio-api frequency analyser node.<br/>

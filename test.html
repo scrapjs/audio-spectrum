@@ -1,0 +1,50 @@
+<!doctype html>
+
+<meta chatrset="utf-8"/>
+
+<style></style>
+
+<script src="./bundle.js"></script>
+
+
+<script type="text/javascript">
+/**
+ * Comparison with web-audio-api spectum
+ */
+// var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+// var channels = 2;
+// var frameCount = audioCtx.sampleRate * 2.0;
+// var myArrayBuffer = audioCtx.createBuffer(channels, frameCount, audioCtx.sampleRate);
+// for (var channel = 0; channel < channels; channel++) {
+// 	var nowBuffering = myArrayBuffer.getChannelData(channel);
+// 	for (var i = 0; i < frameCount; i++) {
+// 		nowBuffering[i] =
+// 		+ Math.cos(Math.PI * 2 * 5000 * i / 44100)
+// 		+ Math.cos(Math.PI * 2 * 10000 * i / 44100)
+// 	  //+ Math.random() * 2 - 1;
+// 	}
+// }
+// var source = audioCtx.createBufferSource();
+// source.buffer = myArrayBuffer;
+
+
+
+// // start the source playing
+// var analyser = audioCtx.createAnalyser();
+// analyser.fftSize = 2048;
+// var bufferLength = analyser.frequencyBinCount;
+
+// setInterval(function () {
+// 	var dataArray = new Float32Array(bufferLength);
+
+// 	analyser.getFloatFrequencyData(dataArray);
+
+// 	console.log(dataArray[0])
+// }, 100);
+
+// source.connect(analyser);
+// analyser.connect(audioCtx.destination);
+// source.start();
+
+</script>

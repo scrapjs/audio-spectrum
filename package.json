@@ -1,0 +1,40 @@
+{
+  "name": "audio-spectrum",
+  "version": "1.0.0",
+  "description": "Render spectrum of audio stream, both in node/browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "watch": "watchify ./test.js -d -o ./bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/audio-lab/spectrum"
+  },
+  "keywords": [
+    "sound",
+    "audio",
+    "spectrum",
+    "fft",
+    "dft",
+    "pcm",
+    "stft"
+  ],
+  "author": "Deema Yvanow <dfcreative@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/audio-lab/spectrum/issues"
+  },
+  "homepage": "https://github.com/audio-lab/spectrum",
+  "dependencies": {
+    "audio-render": "^2.0.0",
+    "inherits": "^2.0.1"
+  },
+  "devDependencies": {
+    "audio-generator": "^1.0.5",
+    "audio-speaker": "^1.1.2",
+    "is-browser": "^2.0.1",
+    "performance-now": "^0.2.0",
+    "watchify": "^3.6.0"
+  }
+}

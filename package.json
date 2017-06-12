@@ -1,40 +1,40 @@
 {
   "name": "audio-spectrum",
   "version": "1.0.0",
-  "description": "Render spectrum of audio stream, both in node/browser",
+  "description": "Show spectrum of audio data",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "watch": "watchify ./test.js -d -o ./bundle.js"
+    "test": "budo test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/audio-lab/spectrum"
+    "url": "https://github.com/audiojs/audio-spectrum"
   },
   "keywords": [
     "sound",
     "audio",
+    "audiojs",
     "spectrum",
-    "fft",
-    "dft",
-    "pcm",
-    "stft"
+    "dsp"
   ],
-  "author": "Deema Yvanow <dfcreative@gmail.com>",
+  "author": "Dima Yv <df.creative@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/audio-lab/spectrum/issues"
+    "url": "https://github.com/audiojs/audio-spectrum/issues"
   },
-  "homepage": "https://github.com/audio-lab/spectrum",
+  "homepage": "https://github.com/audiojs/audio-spectrum",
   "dependencies": {
-    "audio-render": "^2.0.0",
-    "inherits": "^2.0.1"
+    "brfs": "^1.4.3",
+    "decibels": "^1.0.1",
+    "fourier-transform": "^1.1.2",
+    "gl-spectrum": "^3.2.6",
+    "is-audio-buffer": "^1.0.11",
+    "object-assign": "^4.1.1",
+    "scijs-window-functions": "^2.0.2"
   },
   "devDependencies": {
-    "audio-generator": "^1.0.5",
-    "audio-speaker": "^1.1.2",
-    "is-browser": "^2.0.1",
-    "performance-now": "^0.2.0",
-    "watchify": "^3.6.0"
+    "audio-context": "^1.0.1",
+    "audio-generator": "^2.1.2",
+    "web-audio-write": "^1.0.0"
   }
 }

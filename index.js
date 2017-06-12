@@ -4,9 +4,15 @@
  * @module  audio-spectrum
  */
 
-var inherits = require('inherits');
-var Render = require('audio-render');
+'use strict'
 
+const createSpectrum = require('gl-spectrum')
+const blackman = require('scijs-window-functions/blackman-harris');
+const fft = require('fourier-transform')
+const isAudioBuffer = require('is-audio-buffer')
+const db = require('decibels')
+
+module.exports = Spectrum
 
 /**
  * @constructor
@@ -14,35 +20,37 @@ var Render = require('audio-render');
 function Spectrum (options) {
 	if (!(this instanceof Spectrum)) return new Spectrum(options);
 
-	Render.call(this, options);
-}
+	if (!options) options = {}
+	options.interactions = false
+	let spectrum = createSpectrum(options)
+	let channel = options.channel || 0
 
-inherits(Spectrum, Render);
+	return function write (data, callback) {
+		if (!data) return null
 
+		if (isAudioBuffer(data)) {
+			data = data.getChannelData(channel)
+		}
 
-//Display frequencies logarithmically or linearly
-// Spectrum.prototype.log = true;
+		data = data.slice()
 
+		//apply window
+		for (let i = 0, l = data.length; i < l; i++) {
+			data[i] *= blackman(i, l)
+		}
 
-/** Render frame */
-Spectrum.prototype.render = function (canvas) {
-	var self = this;
+		//do fft
+		let mags = fft(data)
 
-	//magnitude varies from -100 (min) to 0 (max)
-	var magnitude = self.getFrequencyData(self.fftSize/2);
+		//convert to magnitudes
+		for (let i = 0, l = mags.length; i < l; i++) {
+			mags[i] = db.fromGain(mags[i])
+		}
 
-	//plot collected frequencies
-	var context = canvas.getContext('2d');
-	var width = canvas.width;
-	var height = canvas.height;
-	var magLength = magnitude.length;
-	var step = width / magLength;
-	context.clearRect(0, 0, width, height);
-	var dbRange = self.maxDecibels - self.minDecibels;
+		//draw
+		spectrum.set(mags)
 
-	for (var i = 0; i < magLength; i++) {
-		var magHeight = height * (magnitude[i] - self.minDecibels) / dbRange;
-		context.fillRect(i * step, height - magHeight, 1, magHeight);
+		return mags
 	}
 }
 

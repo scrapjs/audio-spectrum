@@ -1,33 +1,41 @@
-var Generator = require('audio-generator');
-var Spectrum = require('./');
-var Processor = require('audio-processor');
-var Speaker = require('audio-speaker');
-var isBrowser = require('is-browser');
+'use-strict'
 
-var spectrum = Spectrum({
-	fftSize: 1024*2,
+const Generator = require('audio-generator/direct')
+const Spectrum = require('./');
+const Writer = require('web-audio-write')
+const Context = require('audio-context')
+
+let context = Context()
+
+let spectrum = Spectrum({
 	smoothingTimeConstant: 0.8
-});
+})
 
-if (isBrowser) document.documentElement.appendChild(spectrum.canvas);
-
-Generator({
-	generate: function (time) {
+let generate = Generator((time) => {
 		return [
-			(Math.random() * 2  - 1),
-			(Math.random() * 2  - 1),
+			// (Math.random() * 2  - 1),
+			// (Math.random() * 2  - 1),
 			// Math.cos(Math.PI * 2 * 20 * time) / 2
 			// + Math.cos(Math.PI * 2 * 50 * time) / 2
-			// + Math.cos(Math.PI * 2 * 1000 * time)
-			// + Math.cos(Math.PI * 2 * 5000 * time) / 2
-			// + Math.cos(Math.PI * 2 * 10000 * time) / 2
+			+ Math.cos(Math.PI * 2 * 60 * time)
+			+ Math.cos(Math.PI * 2 * 220 * time) / 2
+			+ Math.cos(Math.PI * 2 * 1000 * time) / 3
+			+ Math.cos(Math.PI * 2 * 4000 * time) / 5
 			// + Math.cos(Math.PI * 2 * 20000 * time) / 2
 		]
-	},
-	duration: 5
+	}, {
+	duration: 4
 })
-.pipe(spectrum)
-.on('render', function (canvas, data) {
-	if (!isBrowser)	process.stdout.write(canvas._canvas.frame());
-})
-.pipe(Speaker());
+
+let write = Writer(context.destination, {channels: 2})
+
+
+function tick () {
+	let buf = generate()
+
+	write(buf, tick)
+
+	spectrum(buf)
+}
+
+tick()

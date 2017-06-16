@@ -8,17 +8,15 @@ Show spectrum of audio data.
 
 
 ```js
-let context = require('audio-context')
+let context = require('audio-context')()
 let spectrum = require('audio-spectrum')()
-let generate = require('audio-generator')((time) => {
-	return Math.random()
-}, {duration: 4})
+let generate = require('audio-generator')(Math.random, {duration: 4})
 let write = require('web-audio-write')(context.destination, {channels: 1})
 
 function tick () {
-	let buf = generate()
-	write(buf, tick)
-	spectrum(buf)
+  let buf = generate()
+  write(buf, tick)
+  spectrum(buf)
 }
 tick()
 ```

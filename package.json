@@ -25,7 +25,7 @@
   "homepage": "https://github.com/audiojs/audio-spectrum",
   "dependencies": {
     "brfs": "^1.4.3",
-    "decibels": "^1.0.1",
+    "decibels": "^2.0.0",
     "fourier-transform": "^1.1.2",
     "gl-spectrum": "^3.2.6",
     "is-audio-buffer": "^1.0.11",

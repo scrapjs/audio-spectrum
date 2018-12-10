@@ -35,6 +35,6 @@
   "devDependencies": {
     "audio-context": "^1.0.1",
     "audio-generator": "^2.1.2",
-    "web-audio-write": "^1.0.0"
+    "web-audio-write": "^1.3.2"
   }
 }
